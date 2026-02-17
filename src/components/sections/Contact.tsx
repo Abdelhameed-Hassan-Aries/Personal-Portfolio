@@ -215,9 +215,8 @@ export default function Contact() {
               {/* Quick facts */}
               <div className="space-y-3">
                 {[
-                  { label: "Response time", value: "< 24 hours"          },
-                  { label: "Timezone",      value: "EET (UTC+2)"          },
-                  { label: "Open to",       value: "Full-time · Remote"   },
+                  { label: "Timezone",      value: "EET (UTC+2)"                    },
+                  { label: "Open to",       value: "Full-time · Part-time · Remote" },
                 ].map(({ label, value }) => (
                   <div
                     key={label}
