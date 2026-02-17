@@ -171,7 +171,7 @@ export const highlightsData = {
       gradient: "from-indigo-900/60 to-violet-900/40",
       borderColor: "rgba(99,102,241,0.25)",
       icon: "✏️",
-      company: "NOMO · 2022–Sep 2022",
+      company: "NOMO · 2022",
       achievements: [
         "Built a fully customisable rich-text editor with SlateJS from the ground up",
         "Shipped the extension on the Chrome Web Store, integrated directly into Gmail compose",
