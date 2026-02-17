@@ -75,7 +75,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden"
+      className="relative min-h-screen flex flex-col items-center text-center px-6 overflow-hidden"
     >
       {/* Radial gradient overlay */}
       <div
@@ -88,7 +88,7 @@ export default function Hero() {
 
       {/* Content */}
       <motion.div
-        className="relative z-2 w-full max-w-5xl mx-auto px-4 sm:px-6"
+        className="relative z-2 w-full max-w-5xl mx-auto px-4 sm:px-6 flex-1 flex flex-col items-center justify-center"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -205,7 +205,7 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
         onClick={handleScrollDown}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-2 flex flex-col items-center gap-2 text-white/25 hover:text-white/60 transition-colors"
+        className="relative sm:absolute sm:bottom-10 sm:left-1/2 sm:-translate-x-1/2 z-2 flex flex-col items-center gap-2 text-white/25 hover:text-white/60 transition-colors mb-8 sm:mb-0 mt-8 sm:mt-0"
         aria-label="Scroll down"
       >
         <span className="text-xs [font-family:var(--font-jetbrains)] tracking-widest uppercase">scroll</span>
