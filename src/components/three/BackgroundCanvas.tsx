@@ -204,7 +204,8 @@ export default function BackgroundCanvas() {
         coarsePointerMq.matches ||
         narrowViewportMq.matches;
       setLowPerformanceMode(lowMode);
-      setMouseTracking(!reducedMotionMq.matches && !coarsePointerMq.matches);
+      // Allow touch devices to drive the parallax — only disable for reduced-motion
+      setMouseTracking(!reducedMotionMq.matches);
     };
 
     updateModes();

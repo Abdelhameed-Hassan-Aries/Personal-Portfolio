@@ -171,7 +171,7 @@ export const highlightsData = {
       gradient: "from-indigo-900/60 to-violet-900/40",
       borderColor: "rgba(99,102,241,0.25)",
       icon: "✏️",
-      company: "NOMO · 2022–Present",
+      company: "NOMO · 2022–Sep 2022",
       achievements: [
         "Built a fully customisable rich-text editor with SlateJS from the ground up",
         "Shipped the extension on the Chrome Web Store, integrated directly into Gmail compose",
@@ -251,7 +251,7 @@ export const experienceData = [
     role: "Frontend Engineer",
     company: "NOMO",
     companyUrl: "https://www.linkedin.com/company/nomo-app/",
-    period: "Feb 2022 — Present",
+    period: "Feb 2022 — Sep 2022",
     location: "Cairo, Egypt",
     description:
       "Built a fully customisable SlateJS-based editor integrated with Gmail compose as a Chrome Extension. Developed custom editor plugins, integrated Giphy & Unsplash APIs, built the companion Next.js web app for template management, and wrote automated Chrome Store publishing pipelines.",

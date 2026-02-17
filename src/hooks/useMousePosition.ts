@@ -23,19 +23,41 @@ export function useMousePosition({ enabled = true }: UseMousePositionOptions = {
 
   useEffect(() => {
     if (!enabled) return;
-    if (window.matchMedia("(pointer: coarse)").matches) return;
 
-    const handleMouseMove = (e: MouseEvent) => {
+    const updateFromCoords = (clientX: number, clientY: number) => {
       mouseRef.current = {
-        x: e.clientX,
-        y: e.clientY,
-        normalizedX: (e.clientX / window.innerWidth) * 2 - 1,
-        normalizedY: -((e.clientY / window.innerHeight) * 2 - 1),
+        x: clientX,
+        y: clientY,
+        normalizedX: (clientX / window.innerWidth) * 2 - 1,
+        normalizedY: -((clientY / window.innerHeight) * 2 - 1),
       };
     };
 
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    const handleMouseMove = (e: MouseEvent) => {
+      updateFromCoords(e.clientX, e.clientY);
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      const touch = e.touches[0];
+      if (!touch) return;
+      updateFromCoords(touch.clientX, touch.clientY);
+    };
+
+    const handleTouchStart = (e: TouchEvent) => {
+      const touch = e.touches[0];
+      if (!touch) return;
+      updateFromCoords(touch.clientX, touch.clientY);
+    };
+
+    window.addEventListener("mousemove",  handleMouseMove,  { passive: true });
+    window.addEventListener("touchmove",  handleTouchMove,  { passive: true });
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+
+    return () => {
+      window.removeEventListener("mousemove",  handleMouseMove);
+      window.removeEventListener("touchmove",  handleTouchMove);
+      window.removeEventListener("touchstart", handleTouchStart);
+    };
   }, [enabled]);
 
   return mouseRef;
