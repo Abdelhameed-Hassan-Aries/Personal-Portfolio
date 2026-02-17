@@ -1,36 +1,121 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Personal Portfolio
+
+A modern personal portfolio built with Next.js App Router, React 19, TypeScript, Tailwind CSS v4, Framer Motion, and Three.js.
+
+## Overview
+
+This project is a single-page portfolio site with animated sections, a dynamic 3D/starfield background, and a working contact form powered by a Next.js API route and Resend.
+
+## Tech Stack
+
+- Next.js 16 (App Router)
+- React 19 + TypeScript
+- Tailwind CSS v4
+- Framer Motion + GSAP
+- Three.js via `@react-three/fiber` and `@react-three/drei`
+- Resend (email delivery for contact form)
+- Bun (runtime used by project scripts)
+
+## Features
+
+- Section-based portfolio layout: Hero, About, Skills, Highlights, Experience, Contact
+- Reusable portfolio data source in `src/data/portfolio.ts`
+- Animated UI elements and scroll progress
+- Dynamic client-side 3D background canvas
+- Contact form API with validation, sanitization, and Resend integration
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Bun installed (`bun --version`)
+- Node.js 20+ recommended for tooling compatibility
+
+### Install dependencies
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+bun install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Configure environment variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Copy example env file:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+cp .env.local.example .env.local
+```
 
-## Learn More
+2. Set values in `.env.local`:
 
-To learn more about Next.js, take a look at the following resources:
+- `RESEND_API_KEY`: your Resend API key (must start with `re_`)
+- `CONTACT_TO_EMAIL`: recipient inbox for contact form messages
+- `CONTACT_FROM_EMAIL`: verified sender address in Resend (for production)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Run development server
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+bun run dev
+```
 
-## Deploy on Vercel
+Open `http://localhost:3000`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Available Scripts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `bun run dev` - start local development server
+- `bun run build` - production build
+- `bun run start` - run production build locally
+- `bun run lint` - run ESLint
+
+## Project Structure
+
+```text
+src/
+  app/
+    api/contact/route.ts      # Contact form backend endpoint
+    globals.css
+    layout.tsx
+    page.tsx                  # Main page composition
+  components/
+    layout/
+    sections/
+    three/
+    ui/
+  data/
+    portfolio.ts              # Main portfolio content/config
+  hooks/
+    useMousePosition.ts
+```
+
+## Contact API Notes
+
+The API route lives at `src/app/api/contact/route.ts` and:
+
+- validates request shape and field sizes
+- validates email format
+- sanitizes user input
+- rejects missing/placeholder Resend API keys
+- sends formatted HTML email via Resend
+
+If email is not configured, the endpoint returns `503` with a clear error message.
+
+## Customizing Content
+
+Update `src/data/portfolio.ts` to edit:
+
+- personal information
+- hero section text and CTA labels
+- skills/categories
+- highlights and achievements
+- work experience
+
+## Deployment
+
+Deploy on Vercel or any platform that supports Next.js.
+
+Set the same environment variables in your hosting provider:
+
+- `RESEND_API_KEY`
+- `CONTACT_TO_EMAIL`
+- `CONTACT_FROM_EMAIL`
+
+For production email delivery, ensure `CONTACT_FROM_EMAIL` is a verified sender/domain in Resend.
